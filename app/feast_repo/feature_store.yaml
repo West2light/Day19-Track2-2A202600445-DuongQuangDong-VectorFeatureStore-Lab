@@ -1,6 +1,8 @@
 project: lab19
 provider: local
-registry: registry.db
+registry:
+  path: registry.db
+  cache_ttl_seconds: 600
 online_store:
   type: sqlite
   path: online_store.db

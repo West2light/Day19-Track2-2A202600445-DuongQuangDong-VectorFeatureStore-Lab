@@ -2,6 +2,11 @@
 # jupyter:
 #   jupytext:
 #     formats: py:percent
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.19.1
 # ---
 
 # %% [markdown]
@@ -150,9 +155,18 @@ print({k: v[0] for k, v in features.items()})
 # ## 5. TODO — Batch latency benchmark (100 lookups, P99)
 
 # %%
+# Warmup — loại bỏ lazy init của Feast (load registry, mở SQLite connection)
+# và làm nóng SQLite page cache. Call đầu ~100ms+ chứng tỏ cần warmup.
+for i in range(20):
+    fs.get_online_features(
+        features=REQUEST_FEATURES,
+        entity_rows=[{"user_id": f"u_{i:03d}"}],
+    ).to_dict()
+
+# Đo thực — 100 calls sau warmup
 latencies: list[float] = []
 for i in range(100):
-    user_id = f"u_{i:03d}"
+    user_id = f"u_{i % 100:03d}"
     t0 = time.perf_counter()
     fs.get_online_features(
         features=REQUEST_FEATURES,
@@ -161,10 +175,11 @@ for i in range(100):
     latencies.append((time.perf_counter() - t0) * 1000)
 
 latencies.sort()
-p50 = latencies[50]
-p95 = latencies[95]
-p99 = latencies[99]
-print(f"Online lookup latency over 100 calls:")
+# 0-indexed: list 100 phần tử → P50=[49], P95=[94], P99=[98]
+p50 = latencies[49]
+p95 = latencies[94]
+p99 = latencies[98]
+print(f"Online lookup latency over 100 calls (warm):")
 print(f"  P50 = {p50:.2f}ms")
 print(f"  P95 = {p95:.2f}ms")
 print(f"  P99 = {p99:.2f}ms")
@@ -172,7 +187,7 @@ print(f"  P99 = {p99:.2f}ms")
 if p99 < 10:
     print(f"PASS — online lookup P99 < 10ms ({p99:.2f}ms)")
 else:
-    print(f"WARN — P99 = {p99:.2f}ms (SQLite trên macOS thường tốt hơn 5ms; Linux thường tốt hơn 1ms)")
+    print(f"WARN — P99 = {p99:.2f}ms (nếu chạy trên WSL + /mnt/d, move repo sang ~/lab19 ext4 để đạt < 10ms)")
 
 # %% [markdown]
 # ## 6. PIT join (offline) — đảm bảo no data leakage
