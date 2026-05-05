@@ -93,7 +93,7 @@ Vì `setup-lite.sh` activate venv bằng `.venv/bin/activate` (Linux), trên Win
 ### Phase F — Benchmark & Reproducibility (≈ 15 phút)
 
 - [ ] **F1.** Chạy `make benchmark` → in bảng Precision@10 + P99 latency tổng hợp.
-```log
+```bash
 (.venv) west2light@DESKTOP-R0MD39H:~/lab19$ make benchmark
 Day 19 benchmark — keyword vs semantic vs hybrid
 ==============================================================
@@ -133,15 +133,15 @@ PASS — hybrid beats keyword by +0.8pp, semantic by +5.4pp
   git commit -m "Lab 19 submission — Duong Quang Dong"
   git push -u origin main
   ```
-- [ ] **G5.** Verify repo **public** trên GitHub.
-- [ ] **G6.** Paste URL vào VinUni LMS Day-19 box.
+- [x] **G5.** Verify repo **public** trên GitHub.
+- [x] **G6.** Paste URL vào VinUni LMS Day-19 box.
 
 ### Phase H — Bonus (optional, +20pts)
 
-- [ ] **H1.** Tạo `bonus/ARCHITECTURE.md` ≥ 600 từ + diagram (mermaid OK).
-- [ ] **H2.** 3 architecture decisions có tradeoff X-vs-Y rõ ràng; ≥ 1 decision có Vietnamese context.
-- [ ] **H3.** `bonus/agent.py` cài `HybridMemoryAgent` với `.remember()` + `.recall()`.
-- [ ] **H4.** `bonus/demo.py` chạy 5 queries, exit 0.
+- [x] **H1.** Tạo `bonus/ARCHITECTURE.md` ≥ 600 từ + diagram (mermaid OK).
+- [x] **H2.** 3 architecture decisions có tradeoff X-vs-Y rõ ràng; ≥ 1 decision có Vietnamese context.
+- [x] **H3.** `bonus/agent.py` cài `HybridMemoryAgent` với `.remember()` + `.recall()`.
+- [x] **H4.** `bonus/demo.py` chạy 5 queries, exit 0.
 
 ---
 
@@ -160,12 +160,12 @@ PASS — hybrid beats keyword by +0.8pp, semantic by +5.4pp
 
 ## 4. Definition of Done
 
-- [ ] 4 notebooks `.ipynb` chạy end-to-end **với output cells**.
-- [ ] `make benchmark` in bảng đầy đủ; hybrid avg P@10 cao nhất; hybrid P99 < 50ms.
-- [ ] `feast apply` + `materialize-incremental` + `get_online_features` + PIT join đều xanh.
-- [ ] `submission/screenshots/` có ≥ 4 ảnh; `REFLECTION.md` ≤ 200 từ.
-- [ ] Repo public trên GitHub; URL submitted vào LMS.
-- [ ] Reproducible từ `clean-lite` → `setup-lite.sh` → `benchmark` không lỗi.
+- [x] 4 notebooks `.ipynb` chạy end-to-end **với output cells**.
+- [x] `make benchmark` in bảng đầy đủ; hybrid avg P@10 cao nhất; hybrid P99 < 50ms.
+- [x] `feast apply` + `materialize-incremental` + `get_online_features` + PIT join đều xanh.
+- [x] `submission/screenshots/` có ≥ 4 ảnh; `REFLECTION.md` ≤ 200 từ.
+- [x] Repo public trên GitHub; URL submitted vào LMS.
+- [x] Reproducible từ `clean-lite` → `setup-lite.sh` → `benchmark` không lỗi.
 
 ---
 

@@ -48,5 +48,5 @@ phụ thuộc rất mạnh vào **ngôn ngữ × kích thước model**. RRF kh�
 
 ## Bonus challenge
 
-- [ ] Đã làm bonus (xem `bonus/`)
+- [x] Đã làm bonus (xem `bonus/`)
 - [ ] Pair work với: _<tên đồng đội nếu có>_
